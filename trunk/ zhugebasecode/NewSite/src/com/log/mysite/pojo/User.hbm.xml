@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.log.mysite.pojo.User" table="user" >
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="username" type="java.lang.String">
+            <column name="username" length="64" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="password" length="64" />
+        </property>
+        <property name="fullname" type="java.lang.String">
+            <column name="fullname" length="64" />
+        </property>
+        <property name="pingyinName" type="java.lang.String">
+            <column name="pingyin_name" length="64" />
+        </property>
+        <property name="birthday" type="java.util.Date">
+            <column name="birthday" length="19" />
+        </property>
+        <property name="qq" type="java.lang.String">
+            <column name="qq" length="64" />
+        </property>
+        <property name="msn" type="java.lang.String">
+            <column name="msn" length="64" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="email" length="64" />
+        </property>
+        <property name="telephone" type="java.lang.String">
+            <column name="telephone" length="64" />
+        </property>
+        <property name="admin" type="java.lang.Boolean">
+            <column name="admin" />
+        </property>
+        <property name="valid" type="java.lang.Boolean">
+            <column name="valid" />
+        </property>
+        <property name="lastIp" type="java.lang.String">
+            <column name="LastIp" length="64" />
+        </property>
+        <property name="imageId" type="java.lang.Long">
+            <column name="imageId" />
+        </property>
+        
+        <many-to-one name="createdBy" column="created_by" class="com.log.mysite.pojo.User"></many-to-one>
+        <many-to-one name="updatedBy" column="updated_by" class="com.log.mysite.pojo.User"></many-to-one>
+        
+        <property name="createdDate" type="java.util.Date">
+            <column name="created_date" length="19" />
+        </property>     
+        
+        <property name="updatedDate" type="java.util.Date">
+            <column name="updated_date"  />
+        </property>
+        <property name="deleted" type="java.lang.Boolean">
+            <column name="deleted" />
+        </property>
+        
+        <set name="userPrivilege" cascade="save-update" 
+        	lazy="false" outer-join="true">
+        	<key column="userId"></key>
+        	<one-to-many class="com.log.mysite.pojo.UserPrivilege" />
+        </set>
+    </class>
+</hibernate-mapping>
